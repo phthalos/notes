@@ -1,4 +1,4 @@
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function AppCard() {
     return (
@@ -12,10 +12,10 @@ export default function AppCard() {
             </CardHeader>
             <CardContent>
                 <p className="text-xs text-muted-foreground">
-                    Hi, let's have a meeting tomorrow to discuss the project. I've been reviewing the project details
-                    and have some ideas I'd like to share. It's crucial that we align on our next steps to ensure the
-                    project's success. Please come prepared with any questions or insights you may have. Looking forward
-                    to our meeting! Best regards, William
+                    Hi, let&apos;s have a meeting tomorrow to discuss the project. I&apos;ve been reviewing the project
+                    details and have some ideas I&apos;d like to share. It&apos;s crucial that we align on our next
+                    steps to ensure the project&apos;s success. Please come prepared with any questions or insights you
+                    may have. Looking forward to our meeting! Best regards, William
                 </p>
             </CardContent>
         </Card>

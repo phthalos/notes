@@ -1,12 +1,15 @@
-import pool from "../../lib/db";
+// import pool from "../../lib/db";
 
-export default async function handler(req, res) {
-    const {method} = req;
+export default async function handler(req /*res*/) {
+    const { method } = req;
 
     switch (method) {
         case "GET":
-            try{
-                const [rows] = await pool.execute("")
+            try {
+                console.log("");
+                // const [rows] = await pool.execute("");
+            } catch (error) {
+                console.error(error);
             }
     }
 }

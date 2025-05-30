@@ -9,11 +9,6 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
 
-type FormTypes = {
-    zod: z.infer<typeof FormSchema>;
-    bio: string;
-};
-
 const FormSchema = z.object({
     bio: z
         .string()
@@ -21,14 +16,16 @@ const FormSchema = z.object({
             message: "Bio must be at least 10 characters.",
         })
         .max(160, {
-            message: "Bio must not be longer than 30 characters.",
+            message: "Bio must not be longer than 160 characters.",
         }),
 });
+
+type FormTypes = z.infer<typeof FormSchema>;
 
 export default function TextareaForm() {
     const form = useForm<FormTypes>({
         resolver: zodResolver(FormSchema),
-        defautValues: {
+        defaultValues: {
             bio: "",
         },
     });
@@ -36,7 +33,6 @@ export default function TextareaForm() {
     function onSubmit(data: FormTypes) {
         try {
             console.log(data);
-
             toast.success("Event has been created", {
                 description: (
                     <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
@@ -51,7 +47,6 @@ export default function TextareaForm() {
         } catch (error) {
             console.error("Form submission error", error);
             toast.error("Failed to submit the form. Please try again.");
-        } finally {
         }
     }
 
@@ -61,13 +56,12 @@ export default function TextareaForm() {
                 <FormField
                     control={form.control}
                     name="bio"
-                    render={({ field }: { field: any }) => (
+                    render={({ field }) => (
                         <FormItem>
                             <FormLabel>Bio</FormLabel>
                             <FormControl>
                                 <Textarea
                                     id="bio"
-                                    // autoComplete=""
                                     placeholder="Tell us a little bit about yourself"
                                     className="resize-none"
                                     {...field}
@@ -80,9 +74,6 @@ export default function TextareaForm() {
                         </FormItem>
                     )}
                 />
-                {/* <FormField>
-                    ...
-                </FormField> */}
                 <Button type="submit">Submit</Button>
             </form>
         </Form>

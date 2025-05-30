@@ -6,8 +6,8 @@ import { ThemeProvider } from "@/components/theme/theme-provider";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import AppSidebar from "@/components/sidebar/app-sidebar";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppBreadCrumb } from "@/components/breadcrumb/app-breadcrumb";
+import { SidebarProvider } from "@/components/ui/sidebar";
+// import { AppBreadCrumb } from "@/components/breadcrumb/app-breadcrumb";
 import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
