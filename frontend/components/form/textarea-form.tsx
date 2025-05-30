@@ -9,6 +9,11 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
 
+type FormTypes = {
+    zod: z.infer<typeof FormSchema>;
+    bio: string;
+};
+
 const FormSchema = z.object({
     bio: z
         .string()
@@ -21,22 +26,33 @@ const FormSchema = z.object({
 });
 
 export default function TextareaForm() {
-    const form = useForm<z.infer<typeof FormSchema>>({
+    const form = useForm<FormTypes>({
         resolver: zodResolver(FormSchema),
+        defautValues: {
+            bio: "",
+        },
     });
 
-    function onSubmit(data: z.infer<typeof FormSchema>) {
-        toast("Event has been created", {
-            description: (
-                <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-                    <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-                </pre>
-            ),
-            action: {
-                label: "Undo",
-                onClick: () => console.log("Undo"),
-            },
-        });
+    function onSubmit(data: FormTypes) {
+        try {
+            console.log(data);
+
+            toast.success("Event has been created", {
+                description: (
+                    <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+                        <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+                    </pre>
+                ),
+                action: {
+                    label: "Undo",
+                    onClick: () => console.log("Undo"),
+                },
+            });
+        } catch (error) {
+            console.error("Form submission error", error);
+            toast.error("Failed to submit the form. Please try again.");
+        } finally {
+        }
     }
 
     return (
@@ -45,11 +61,13 @@ export default function TextareaForm() {
                 <FormField
                     control={form.control}
                     name="bio"
-                    render={({ field }) => (
+                    render={({ field }: { field: any }) => (
                         <FormItem>
                             <FormLabel>Bio</FormLabel>
                             <FormControl>
                                 <Textarea
+                                    id="bio"
+                                    // autoComplete=""
                                     placeholder="Tell us a little bit about yourself"
                                     className="resize-none"
                                     {...field}
@@ -62,6 +80,9 @@ export default function TextareaForm() {
                         </FormItem>
                     )}
                 />
+                {/* <FormField>
+                    ...
+                </FormField> */}
                 <Button type="submit">Submit</Button>
             </form>
         </Form>
