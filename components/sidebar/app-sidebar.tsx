@@ -44,28 +44,30 @@ const items = [
 
 export default function AppSidebar() {
     return (
-        <Sidebar className="pt-14" variant="floating" collapsible="icon">
-            <SidebarContent>
-                <SidebarGroup>
-                    <SidebarGroupLabel>Application</SidebarGroupLabel>
-                    <SidebarGroupContent>
-                        <SidebarMenu>
-                            <SidebarTrigger />
-                            {items.map((item) => (
-                                <SidebarMenuItem key={item.title}>
-                                    <SidebarMenuButton asChild>
-                                        <a href={item.url}>
-                                            <item.icon />
-                                            <span>{item.title}</span>
-                                        </a>
-                                    </SidebarMenuButton>
-                                </SidebarMenuItem>
-                            ))}
-                        </SidebarMenu>
-                    </SidebarGroupContent>
-                </SidebarGroup>
-                <Footer />
-            </SidebarContent>
-        </Sidebar>
+        <>
+            <Sidebar className="pt-14" variant="floating" collapsible="icon">
+                <SidebarContent>
+                    <SidebarGroup>
+                        <SidebarGroupLabel>Application</SidebarGroupLabel>
+                        <SidebarGroupContent>
+                            <SidebarMenu>
+                                <SidebarTrigger className="ml-0.5" />
+                                {items.map((item) => (
+                                    <SidebarMenuItem key={item.title}>
+                                        <SidebarMenuButton asChild>
+                                            <a href={item.url}>
+                                                <item.icon />
+                                                <span>{item.title}</span>
+                                            </a>
+                                        </SidebarMenuButton>
+                                    </SidebarMenuItem>
+                                ))}
+                            </SidebarMenu>
+                        </SidebarGroupContent>
+                    </SidebarGroup>
+                    <Footer />
+                </SidebarContent>
+            </Sidebar>
+        </>
     );
 }

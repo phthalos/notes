@@ -3,9 +3,9 @@ import { Memo } from "@/hooks/use-memos";
 
 export default function AppCard({ title, content, created_at }: Memo) {
     return (
-        <Card className="mt-8">
+        <Card className="mt-2 hover:bg-accent cursor-pointer transition-colors duration-100">
             <CardHeader>
-                <div className="flex flex-row justify-between">
+                <div className="flex lg:flex-row sm:flex-col justify-between gap-1">
                     <CardTitle>{title}</CardTitle>
                     <span className="text-xs">{created_at}</span>
                 </div>

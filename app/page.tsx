@@ -8,6 +8,8 @@ import Details from "@/components/details/details";
 import Contents from "@/components/details/contents";
 import { useMemos } from "@/hooks/use-memos";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { useState } from "react";
+import formatToKSTString from "@/utils/date";
 
 export default function Home() {
     const { memos, title, content, editingId, createMemo, updateMemo, deleteMemo, startEdit, cancelEdit } = useMemos();
@@ -22,6 +24,12 @@ export default function Home() {
             createMemo(values);
         }
     };
+
+    const [selected, setSelected] = useState<number | undefined>(0);
+    const selectedMemo = memos.find((memo) => memo.id === selected);
+
+    const [panelOpen, setPanelOpen] = useState(false);
+
     return (
         <ResizablePanelGroup direction="horizontal">
             <ResizablePanel defaultSize={40} minSize={30} className="flex w-full h-screen -mt-14 pt-14">
@@ -34,24 +42,46 @@ export default function Home() {
                         onCancel={cancelEdit}
                     />
                     {memos.map((memo) => (
-                        <AppCard
+                        <div
                             key={memo.id}
-                            id={memo.id}
-                            title={memo.title}
-                            content={memo.content}
-                            created_at={memo.created_at}
-                            updated_at={memo.updated_at}
-                        />
+                            onClick={() => {
+                                setSelected(memo.id);
+                                setPanelOpen(true);
+                            }}
+                        >
+                            <AppCard
+                                id={memo.id}
+                                title={memo.title}
+                                content={memo.content}
+                                created_at={formatToKSTString(memo.created_at)}
+                                updated_at={memo.updated_at}
+                            />
+                        </div>
                     ))}
                 </ScrollArea>
             </ResizablePanel>
             <ResizableHandle withHandle />
-            <ResizablePanel defaultSize={60}>
-                <TooltipList />
-                <Details />
-                <ScrollArea className="flex w-full h-screen -mt-48 pt-48">
-                    <Contents />
-                </ScrollArea>
+            <ResizablePanel
+                className={`transition-all duration-1000 ease-in-out overflow-hidden 
+                    ${panelOpen ? "max-w-full" : "max-w-0"}
+                    `}
+            >
+                {selectedMemo && (
+                    <>
+                        <TooltipList
+                            id={selectedMemo.id}
+                            deleteMemo={deleteMemo}
+                            startEdit={startEdit}
+                            cancelEdit={cancelEdit}
+                            setPanelOpen={setPanelOpen}
+                            memo={selectedMemo}
+                        />
+                        <Details title={selectedMemo.title} created_at={formatToKSTString(selectedMemo.created_at)} />
+                        <ScrollArea className="flex w-full h-screen -mt-48 pt-48">
+                            <Contents content={selectedMemo.content} />
+                        </ScrollArea>
+                    </>
+                )}
             </ResizablePanel>
         </ResizablePanelGroup>
     );

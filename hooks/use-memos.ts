@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { toast } from "sonner";
 
 export interface Memo {
     id: number;
@@ -24,6 +25,7 @@ export function useMemos() {
             setMemos(data);
         } catch (error) {
             console.error("Error fetching memos:", error);
+            toast.error("메모를 가져오지 못했습니다.");
         }
     };
 
@@ -40,9 +42,11 @@ export function useMemos() {
 
             if (response.ok) {
                 fetchMemos();
+                toast.success("메모를 작성하였습니다.");
             }
         } catch (error) {
             console.error("Error creating memo:", error);
+            toast.error("메모를 작성하지 못했습니다.");
         }
     };
 
@@ -62,9 +66,11 @@ export function useMemos() {
                 setContent("");
                 setEditingId(null);
                 fetchMemos();
+                toast.success("메모를 수정하였습니다.");
             }
         } catch (error) {
             console.error("Error updating memo:", error);
+            toast.error("메모를 수정하지 못했습니다.");
         }
     };
 
@@ -81,9 +87,11 @@ export function useMemos() {
 
             if (response.ok) {
                 fetchMemos();
+                toast.success("메모를 삭제하였습니다.", {});
             }
         } catch (error) {
             console.error("Error deleting memo:", error);
+            toast.error("메모를 삭제하지 못했습니다.");
         }
     };
 

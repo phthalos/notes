@@ -10,7 +10,7 @@ export default function Header() {
                 <h1 className="font-semibold">
                     <Link href="/">Project Name</Link>
                 </h1>
-                <ModeToggle />
+                {/* <ModeToggle /> */}
             </div>
         </header>
     );
