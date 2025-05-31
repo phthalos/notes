@@ -1,17 +1,21 @@
-import { Calendar, Home, Inbox, NotebookPen, Search, Settings } from "lucide-react";
+"use client";
+import { NotebookPen } from "lucide-react";
 import Footer from "@/components/footer";
 
 import {
     Sidebar,
     SidebarContent,
+    SidebarFooter,
     SidebarGroup,
     SidebarGroupContent,
     SidebarGroupLabel,
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
+    SidebarProvider,
     SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { useState } from "react";
 
 // Menu items.
 const items = [
@@ -43,8 +47,9 @@ const items = [
 ];
 
 export default function AppSidebar() {
+    const [open, setOpen] = useState(true);
     return (
-        <>
+        <SidebarProvider open={open} onOpenChange={setOpen} className="w-fit">
             <Sidebar className="pt-14" variant="floating" collapsible="icon">
                 <SidebarContent>
                     <SidebarGroup>
@@ -65,9 +70,11 @@ export default function AppSidebar() {
                             </SidebarMenu>
                         </SidebarGroupContent>
                     </SidebarGroup>
-                    <Footer />
+                    <SidebarFooter className="mt-auto">
+                        <Footer className={open ? "" : "opacity-0"} />
+                    </SidebarFooter>
                 </SidebarContent>
             </Sidebar>
-        </>
+        </SidebarProvider>
     );
 }

@@ -36,22 +36,19 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="ko" suppressHydrationWarning className="overflow-y-hidden">
+        <html lang="ko" suppressHydrationWarning className="overflow-hidden">
             <body
                 className={`${geistSans.variable} ${geistMono.variable} ${pretendard.variable} ${pretendard.className} antialiased`}
             >
                 <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-                    <div>
-                        <Header />
-                        <SidebarProvider>
-                            <AppSidebar />
-                            <main>
-                                {/* <AppBreadCrumb /> */}
-                                {children}
-                                <Toaster closeButton position="bottom-right" expand={false} richColors />
-                            </main>
-                        </SidebarProvider>
-                    </div>
+                    <Header />
+                    <SidebarProvider>
+                        <AppSidebar />
+                        <main>
+                            {children}
+                            <Toaster closeButton position="bottom-right" expand={false} richColors />
+                        </main>
+                    </SidebarProvider>
                 </ThemeProvider>
             </body>
         </html>

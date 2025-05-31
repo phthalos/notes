@@ -2,7 +2,6 @@
 
 import { TextareaForm } from "@/components/form/textarea-form";
 import AppCard from "@/components/card/app-card";
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
 import { TooltipList } from "@/components/custom/tooltip-list";
 import Details from "@/components/details/details";
 import Contents from "@/components/details/contents";
@@ -31,64 +30,60 @@ export default function Home() {
     const [panelOpen, setPanelOpen] = useState(false);
 
     return (
-        <ResizablePanelGroup direction="horizontal">
-            <ResizablePanel defaultSize={40} minSize={30} className="flex w-full h-screen -mt-14 pt-14">
-                <ScrollArea className="p-4">
-                    <TextareaForm
-                        title={title}
-                        content={content}
-                        editingId={editingId}
-                        onSubmit={handleSubmit}
-                        onCancel={cancelEdit}
-                    />
-                    {memos.map((memo) => (
-                        <div
-                            key={memo.id}
-                            onClick={() => {
-                                setSelected(memo.id);
-                                setPanelOpen(true);
-                            }}
-                        >
-                            <AppCard
-                                id={memo.id}
-                                title={memo.title}
-                                content={memo.content}
-                                created_at={formatToKSTString(memo.created_at)}
-                                updated_at={memo.updated_at}
-                            />
-                        </div>
-                    ))}
-                </ScrollArea>
-            </ResizablePanel>
-            {/* <ResizableHandle withHandle /> */}
-            <ResizablePanel defaultSize={0} className="w-0">
-                <div
-                    className={`absolute top-0 right-0 h-full w-1/3 bg-background shadow-lg z-50
+        <div>
+            <ScrollArea
+                className={`p-4 w-1/2 mx-auto transition-all duration-1000  ease-in-out ${
+                    panelOpen ? "-translate-x-1/3" : "translate-x-0"
+                }`}
+            >
+                <TextareaForm
+                    title={title}
+                    content={content}
+                    editingId={editingId}
+                    onSubmit={handleSubmit}
+                    onCancel={cancelEdit}
+                />
+                {memos.map((memo) => (
+                    <div
+                        key={memo.id}
+                        onClick={() => {
+                            setSelected(memo.id);
+                            setPanelOpen(true);
+                        }}
+                    >
+                        <AppCard
+                            id={memo.id}
+                            title={memo.title}
+                            content={memo.content}
+                            created_at={formatToKSTString(memo.created_at)}
+                            updated_at={memo.updated_at}
+                        />
+                    </div>
+                ))}
+            </ScrollArea>
+            <div
+                className={`absolute top-0 right-0 h-full w-1/3 bg-background shadow-lg z-50
     transition-transform duration-1000 ease-in-out
     ${panelOpen ? "translate-x-0" : "translate-x-full"}
 `}
-                >
-                    {selectedMemo && (
-                        <>
-                            <TooltipList
-                                id={selectedMemo.id}
-                                deleteMemo={deleteMemo}
-                                startEdit={startEdit}
-                                cancelEdit={cancelEdit}
-                                setPanelOpen={setPanelOpen}
-                                memo={selectedMemo}
-                            />
-                            <Details
-                                title={selectedMemo.title}
-                                created_at={formatToKSTString(selectedMemo.created_at)}
-                            />
-                            <ScrollArea className="flex w-full h-screen -mt-32 pt-32">
-                                <Contents content={selectedMemo.content} />
-                            </ScrollArea>
-                        </>
-                    )}
-                </div>
-            </ResizablePanel>
-        </ResizablePanelGroup>
+            >
+                {selectedMemo && (
+                    <>
+                        <TooltipList
+                            id={selectedMemo.id}
+                            deleteMemo={deleteMemo}
+                            startEdit={startEdit}
+                            cancelEdit={cancelEdit}
+                            setPanelOpen={setPanelOpen}
+                            memo={selectedMemo}
+                        />
+                        <Details title={selectedMemo.title} created_at={formatToKSTString(selectedMemo.created_at)} />
+                        <ScrollArea className="flex w-full h-screen -mt-32 pt-32">
+                            <Contents content={selectedMemo.content} />
+                        </ScrollArea>
+                    </>
+                )}
+            </div>
+        </div>
     );
 }

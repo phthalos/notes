@@ -9,6 +9,18 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import React from "react";
 
+// const escapeHtml = (text: string) => {
+//     const map: Record<string, string> = {
+//         "<": "&lt;",
+//         ">": "&gt;",
+//         "&": "&amp;",
+//         "'": "&#39;",
+//         '"': "&quot;",
+//         "/": "&#47;",
+//     };
+//     return text.replace(/[<>&'"\/]/g, (char: string): string => map[char]);
+// };
+
 const formSchema = z.object({
     title: z
         .string()
@@ -20,6 +32,12 @@ const formSchema = z.object({
         }),
     content: z.string().optional(),
 });
+// .transform((v) => {
+//     return {
+//         title: escapeHtml(v.title),
+//         content: escapeHtml(v.content || ""),
+//     };
+// });
 
 interface TextareaFormProps {
     title?: string;

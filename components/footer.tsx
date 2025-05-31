@@ -1,8 +1,10 @@
 import Link from "next/link";
 
-export default function Footer() {
+export default function Footer({ className }: { className: string }) {
     return (
-        <footer className={`py-2 z-50 mt-auto text-xs text-muted-foreground text-center`}>
+        <footer
+            className={`py-2 z-50 text-xs text-muted-foreground text-center transition-opacity duration-100 ${className}`}
+        >
             <p>
                 Copyright © 2025{" "}
                 <Link target="_blank" href="https://github.com/phthalos" className="underline">

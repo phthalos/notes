@@ -1,4 +1,4 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Memo } from "@/hooks/use-memos";
 
 export default function AppCard({ title, content, created_at }: Memo) {
@@ -9,7 +9,6 @@ export default function AppCard({ title, content, created_at }: Memo) {
                     <CardTitle>{title}</CardTitle>
                     <span className="text-xs">{created_at}</span>
                 </div>
-                {/* <CardDescription>Card Description</CardDescription> */}
             </CardHeader>
             <CardContent>
                 <p className="text-xs text-muted-foreground">{content}</p>

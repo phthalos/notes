@@ -73,7 +73,14 @@ export function TooltipList({ id, deleteMemo, setPanelOpen, startEdit, memo }: T
                                 </AlertDialogHeader>
                                 <AlertDialogFooter>
                                     <AlertDialogCancel>취소</AlertDialogCancel>
-                                    <AlertDialogAction onClick={() => deleteMemo(id)}>삭제</AlertDialogAction>
+                                    <AlertDialogAction
+                                        onClick={() => {
+                                            setPanelOpen(false);
+                                            deleteMemo(id);
+                                        }}
+                                    >
+                                        삭제
+                                    </AlertDialogAction>
                                 </AlertDialogFooter>
                             </AlertDialogContent>
                         </AlertDialog>
