@@ -1,4 +1,4 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+import { Calendar, Home, Inbox, NotebookPen, Search, Settings } from "lucide-react";
 import Footer from "@/components/footer";
 
 import {
@@ -16,30 +16,30 @@ import {
 // Menu items.
 const items = [
     {
-        title: "Home",
+        title: "메모",
         url: "/",
-        icon: Home,
+        icon: NotebookPen,
     },
-    {
-        title: "Inbox",
-        url: "#",
-        icon: Inbox,
-    },
-    {
-        title: "Calendar",
-        url: "/calendar",
-        icon: Calendar,
-    },
-    {
-        title: "Search",
-        url: "#",
-        icon: Search,
-    },
-    {
-        title: "Settings",
-        url: "#",
-        icon: Settings,
-    },
+    // {
+    //     title: "Inbox",
+    //     url: "#",
+    //     icon: Inbox,
+    // },
+    // {
+    //     title: "Calendar",
+    //     url: "/calendar",
+    //     icon: Calendar,
+    // },
+    // {
+    //     title: "Search",
+    //     url: "#",
+    //     icon: Search,
+    // },
+    // {
+    //     title: "Settings",
+    //     url: "#",
+    //     icon: Settings,
+    // },
 ];
 
 export default function AppSidebar() {
@@ -48,7 +48,7 @@ export default function AppSidebar() {
             <Sidebar className="pt-14" variant="floating" collapsible="icon">
                 <SidebarContent>
                     <SidebarGroup>
-                        <SidebarGroupLabel>Application</SidebarGroupLabel>
+                        <SidebarGroupLabel>메뉴</SidebarGroupLabel>
                         <SidebarGroupContent>
                             <SidebarMenu>
                                 <SidebarTrigger className="ml-0.5" />

@@ -8,9 +8,9 @@ export default function Header() {
         >
             <div className="flex items-center justify-between mx-4">
                 <h1 className="font-semibold">
-                    <Link href="/">Project Name</Link>
+                    <Link href="/">단순한 사람을 위한 메모장</Link>
                 </h1>
-                {/* <ModeToggle /> */}
+                <ModeToggle />
             </div>
         </header>
     );

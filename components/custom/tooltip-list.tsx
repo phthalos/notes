@@ -25,7 +25,7 @@ type TootipTypes = {
     memo: Memo;
 };
 
-export function TooltipList({ id, deleteMemo, setPanelOpen, startEdit, cancelEdit, memo }: TootipTypes) {
+export function TooltipList({ id, deleteMemo, setPanelOpen, startEdit, memo }: TootipTypes) {
     return (
         <ul className="flex justify-end border-b border-muted-foreground p-2 sticky z-10">
             <TooltipProvider delayDuration={100}>

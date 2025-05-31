@@ -60,28 +60,34 @@ export default function Home() {
                     ))}
                 </ScrollArea>
             </ResizablePanel>
-            <ResizableHandle withHandle />
-            <ResizablePanel
-                className={`transition-all duration-1000 ease-in-out overflow-hidden 
-                    ${panelOpen ? "max-w-full" : "max-w-0"}
-                    `}
-            >
-                {selectedMemo && (
-                    <>
-                        <TooltipList
-                            id={selectedMemo.id}
-                            deleteMemo={deleteMemo}
-                            startEdit={startEdit}
-                            cancelEdit={cancelEdit}
-                            setPanelOpen={setPanelOpen}
-                            memo={selectedMemo}
-                        />
-                        <Details title={selectedMemo.title} created_at={formatToKSTString(selectedMemo.created_at)} />
-                        <ScrollArea className="flex w-full h-screen -mt-48 pt-48">
-                            <Contents content={selectedMemo.content} />
-                        </ScrollArea>
-                    </>
-                )}
+            {/* <ResizableHandle withHandle /> */}
+            <ResizablePanel defaultSize={0} className="w-0">
+                <div
+                    className={`absolute top-0 right-0 h-full w-1/3 bg-background shadow-lg z-50
+    transition-transform duration-1000 ease-in-out
+    ${panelOpen ? "translate-x-0" : "translate-x-full"}
+`}
+                >
+                    {selectedMemo && (
+                        <>
+                            <TooltipList
+                                id={selectedMemo.id}
+                                deleteMemo={deleteMemo}
+                                startEdit={startEdit}
+                                cancelEdit={cancelEdit}
+                                setPanelOpen={setPanelOpen}
+                                memo={selectedMemo}
+                            />
+                            <Details
+                                title={selectedMemo.title}
+                                created_at={formatToKSTString(selectedMemo.created_at)}
+                            />
+                            <ScrollArea className="flex w-full h-screen -mt-32 pt-32">
+                                <Contents content={selectedMemo.content} />
+                            </ScrollArea>
+                        </>
+                    )}
+                </div>
             </ResizablePanel>
         </ResizablePanelGroup>
     );

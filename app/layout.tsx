@@ -26,7 +26,7 @@ const pretendard = localFont({
 });
 
 export const metadata: Metadata = {
-    title: "Notes",
+    title: "단순한 사람을 위한 메모장",
     description: "",
 };
 
