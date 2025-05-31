@@ -39,6 +39,9 @@ const formSchema = z.object({
 //     };
 // });
 
+// Define the form type based on the schema
+type FormType = z.infer<typeof formSchema>;
+
 interface TextareaFormProps {
     title?: string;
     content?: string;
@@ -48,7 +51,7 @@ interface TextareaFormProps {
 }
 
 export function TextareaForm({ title = "", content = "", editingId, onSubmit, onCancel }: TextareaFormProps) {
-    const form = useForm<z.infer<typeof formSchema>>({
+    const form = useForm<FormType>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             title: title,
@@ -64,7 +67,7 @@ export function TextareaForm({ title = "", content = "", editingId, onSubmit, on
         });
     }, [title, content, form]);
 
-    function handleSubmit(values: z.infer<typeof formSchema>) {
+    function handleSubmit(values: FormType) {
         onSubmit({
             title: values.title,
             content: values.content || "",
@@ -93,7 +96,7 @@ export function TextareaForm({ title = "", content = "", editingId, onSubmit, on
                 <FormField
                     control={form.control}
                     name="title"
-                    render={({ field }: { field: ControllerRenderProps<FormData, "title"> }) => (
+                    render={({ field }: { field: ControllerRenderProps<FormType, "title"> }) => (
                         <FormItem>
                             <FormLabel>제목</FormLabel>
                             <FormControl>
@@ -107,7 +110,7 @@ export function TextareaForm({ title = "", content = "", editingId, onSubmit, on
                 <FormField
                     control={form.control}
                     name="content"
-                    render={({ field }: { field: ControllerRenderProps<FormData, "content"> }) => (
+                    render={({ field }: { field: ControllerRenderProps<FormType, "content"> }) => (
                         <FormItem>
                             <FormLabel>내용</FormLabel>
                             <FormControl>
