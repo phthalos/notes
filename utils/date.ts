@@ -1,8 +1,7 @@
 function formatToKSTString(utcISOString: string): string {
     const date = new Date(utcISOString);
 
-    const kstOffset = 9 * 60 * 60 * 1000;
-    const kstDate = new Date(date.getTime() + kstOffset);
+    const kstDate = new Date(date.getTime());
 
     const year = kstDate.getFullYear();
     const month = String(kstDate.getMonth() + 1).padStart(2, "0");
