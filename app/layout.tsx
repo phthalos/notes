@@ -28,6 +28,7 @@ const pretendard = localFont({
 export const metadata: Metadata = {
     title: "단순한 사람을 위한 메모장",
     description: "",
+    icons: "/icon.ico",
 };
 
 export default function RootLayout({
@@ -44,7 +45,7 @@ export default function RootLayout({
                     <SidebarProvider>
                         <Header />
                         <AppSidebar />
-                        <main>
+                        <main className="w-full">
                             {children}
                             <Toaster closeButton position="bottom-right" expand={false} richColors />
                         </main>
