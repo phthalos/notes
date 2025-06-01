@@ -12,9 +12,10 @@ import {
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
-import { ArrowRightFromLine, MoreVertical, Pencil, Trash2 } from "lucide-react";
+import { ArrowRightFromLine, Clipboard, Pencil, Trash2 } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
 import { Memo } from "@/hooks/use-memos";
+import { useCopy } from "@/hooks/use-copy";
 
 type TootipTypes = {
     id: number;
@@ -26,9 +27,11 @@ type TootipTypes = {
 };
 
 export function TooltipList({ id, deleteMemo, setPanelOpen, startEdit, memo }: TootipTypes) {
+    const { copy, copyContent } = useCopy();
     return (
         <ul className="flex justify-end border-b border-muted-foreground p-2 sticky z-10">
             <TooltipProvider delayDuration={100}>
+                {/* 판넬닫기 */}
                 <Tooltip>
                     <TooltipTrigger asChild>
                         <Button
@@ -41,6 +44,7 @@ export function TooltipList({ id, deleteMemo, setPanelOpen, startEdit, memo }: T
                         </Button>
                     </TooltipTrigger>
                 </Tooltip>
+                {/* 수정 */}
                 <Tooltip>
                     <TooltipTrigger asChild>
                         <Button
@@ -56,6 +60,7 @@ export function TooltipList({ id, deleteMemo, setPanelOpen, startEdit, memo }: T
                         <p>수정</p>
                     </TooltipContent>
                 </Tooltip>
+                {/* 삭제 */}
                 <AlertDialog>
                     <AlertDialogTrigger>
                         <Tooltip>
@@ -89,12 +94,21 @@ export function TooltipList({ id, deleteMemo, setPanelOpen, startEdit, memo }: T
                         </AlertDialogFooter>
                     </AlertDialogContent>
                 </AlertDialog>
+                {/* 더보기 */}
                 <Tooltip>
                     <TooltipTrigger asChild>
-                        <Button id="tooltip_more" className="p-0 h-9 w-9 hover:cursor-pointer" variant="ghost">
-                            <MoreVertical />
+                        <Button
+                            onClick={copyContent}
+                            id="tooltip_more"
+                            className="p-0 h-9 w-9 hover:cursor-pointer"
+                            variant="ghost"
+                        >
+                            <Clipboard />
                         </Button>
                     </TooltipTrigger>
+                    <TooltipContent>
+                        <p>{copy ? "복사 완료!" : "복사"}</p>
+                    </TooltipContent>
                 </Tooltip>
             </TooltipProvider>
         </ul>
