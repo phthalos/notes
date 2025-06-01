@@ -36,13 +36,13 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="ko" suppressHydrationWarning className="overflow-hidden">
+        <html lang="ko" suppressHydrationWarning className="overflow-hidden -z-10">
             <body
                 className={`${geistSans.variable} ${geistMono.variable} ${pretendard.variable} ${pretendard.className} antialiased`}
             >
                 <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-                    <Header />
                     <SidebarProvider>
+                        <Header />
                         <AppSidebar />
                         <main>
                             {children}

@@ -11,7 +11,7 @@ export default function AppCard({ title, content, created_at }: Memo) {
                 </div>
             </CardHeader>
             <CardContent>
-                <p className="text-xs text-muted-foreground">{content}</p>
+                <p className="text-xs text-muted-foreground whitespace-pre-wrap">{content}</p>
             </CardContent>
         </Card>
     );

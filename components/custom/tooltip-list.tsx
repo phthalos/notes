@@ -56,39 +56,39 @@ export function TooltipList({ id, deleteMemo, setPanelOpen, startEdit, memo }: T
                         <p>수정</p>
                     </TooltipContent>
                 </Tooltip>
-                <Tooltip>
-                    <TooltipTrigger asChild>
-                        <AlertDialog>
-                            <AlertDialogTrigger>
+                <AlertDialog>
+                    <AlertDialogTrigger>
+                        <Tooltip>
+                            <TooltipTrigger asChild>
                                 <Button id="tooltip_trash" className="p-0 h-9 w-9 hover:cursor-pointer" variant="ghost">
                                     <Trash2 />
                                 </Button>
-                            </AlertDialogTrigger>
-                            <AlertDialogContent>
-                                <AlertDialogHeader>
-                                    <AlertDialogTitle>정말로 삭제하시겠습니까?</AlertDialogTitle>
-                                    <AlertDialogDescription>
-                                        이 메모는 완전히 삭제되며, 다시는 복구할 수 없습니다.
-                                    </AlertDialogDescription>
-                                </AlertDialogHeader>
-                                <AlertDialogFooter>
-                                    <AlertDialogCancel>취소</AlertDialogCancel>
-                                    <AlertDialogAction
-                                        onClick={() => {
-                                            setPanelOpen(false);
-                                            deleteMemo(id);
-                                        }}
-                                    >
-                                        삭제
-                                    </AlertDialogAction>
-                                </AlertDialogFooter>
-                            </AlertDialogContent>
-                        </AlertDialog>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                        <p>삭제</p>
-                    </TooltipContent>
-                </Tooltip>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                                <p>삭제</p>
+                            </TooltipContent>
+                        </Tooltip>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                        <AlertDialogHeader>
+                            <AlertDialogTitle>정말로 삭제하시겠습니까?</AlertDialogTitle>
+                            <AlertDialogDescription>
+                                이 메모는 완전히 삭제되며, 다시는 복구할 수 없습니다.
+                            </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                            <AlertDialogCancel>취소</AlertDialogCancel>
+                            <AlertDialogAction
+                                onClick={() => {
+                                    setPanelOpen(false);
+                                    deleteMemo(id);
+                                }}
+                            >
+                                삭제
+                            </AlertDialogAction>
+                        </AlertDialogFooter>
+                    </AlertDialogContent>
+                </AlertDialog>
                 <Tooltip>
                     <TooltipTrigger asChild>
                         <Button id="tooltip_more" className="p-0 h-9 w-9 hover:cursor-pointer" variant="ghost">

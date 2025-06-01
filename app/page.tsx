@@ -30,10 +30,10 @@ export default function Home() {
     const [panelOpen, setPanelOpen] = useState(false);
 
     return (
-        <div>
+        <>
             <ScrollArea
-                className={`p-4 w-1/2 mx-auto transition-all duration-1000  ease-in-out ${
-                    panelOpen ? "-translate-x-1/3" : "translate-x-0"
+                className={`h-[100vh] px-4 xl:w-1/2 xl:mx-auto transition-all duration-1000 ease-in-out ${
+                    panelOpen ? "xl:-translate-x-1/3" : "xl:translate-x-0"
                 }`}
             >
                 <TextareaForm
@@ -60,9 +60,10 @@ export default function Home() {
                         />
                     </div>
                 ))}
+                <div className="h-14" />
             </ScrollArea>
             <div
-                className={`absolute top-0 right-0 h-full w-1/3 bg-background shadow-lg z-50
+                className={`fixed top-0 right-0 h-full xl:w-1/3 lg:w-1/2 bg-background shadow-lg z-50
     transition-transform duration-1000 ease-in-out
     ${panelOpen ? "translate-x-0" : "translate-x-full"}
 `}
@@ -84,6 +85,6 @@ export default function Home() {
                     </>
                 )}
             </div>
-        </div>
+        </>
     );
 }

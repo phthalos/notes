@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Header() {
     return (
         <header
-            className="sticky top-0 backdrop-blur py-2 z-50 bg-background/90 supports-[backdrop-filter]:bg-background/60 border-b border-b-muted-foreground"
+            className="fixed w-full top-0 backdrop-blur py-2 z-50 bg-background/90 supports-[backdrop-filter]:bg-background/60 border-b border-b-muted-foreground"
             suppressHydrationWarning
         >
             <div className="flex items-center justify-between mx-4">
